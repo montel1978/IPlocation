@@ -1,0 +1,25 @@
+# Network scaner using Nmap for open port.
+import nmap
+
+# install python3_nmap packages in interpreter setting.
+
+# select your port range to scan
+begin = 21
+end = 80
+
+# assign the target ip to be scanned to
+# a variable
+target = '127.0.0.1'
+
+# instantiate a PortScanner object
+scanner = nmap.PortScanner()
+
+for i in range(begin, end + 1):
+    # scan the target port
+    res = scanner.scan(target, str(i))
+
+
+    res = res['scan'][target]['tcp'][i]['state']
+    
+# print ports and status 
+    print(f'port {i} is {res}.')
